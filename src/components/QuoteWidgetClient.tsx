@@ -7,10 +7,10 @@ import quotes from '@/data/weeklyQuotes';
 import themes from '@/themes/pastel';
 
 
-export default function WidgetEmbed({themeNumber}: {themeNumber: string}) {
+export default function WidgetEmbed({ themeNumber }: { themeNumber: string }) {
 
 
-    
+
 
     const [theme, setTheme] = useState(
         themes.find(t => t.id === Number(themeNumber)) || themes[0]
@@ -57,7 +57,7 @@ export default function WidgetEmbed({themeNumber}: {themeNumber: string}) {
                 }}
             >
                 <div className='flex items-center gap-4 mb-8'>
-                    <div className="bg-white bg-opacity-30 backdrop-blur-sm rounded-full px-6 py-4 w-fit">
+                    <div className="bg-white bg-opacity-30 backdrop-blur-sm rounded-full px-4 py-2 w-fit">
                         <select
                             value={theme.name}
                             onChange={(e) => {
@@ -75,7 +75,7 @@ export default function WidgetEmbed({themeNumber}: {themeNumber: string}) {
                     <button
                         onClick={generateNewQuote}
                         disabled={isRefreshing}
-                        className="w-fit px-6 py-4 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-xl font-semibold transition-all hover:shadow-xl flex items-center justify-center gap-2"
+                        className="w-fit px-4 py-2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-xl font-semibold transition-all hover:shadow-xl flex items-center justify-center gap-2"
                         style={{ color: theme.background }}
                     >
                         <RefreshCw className={`w-5 h-5 ${isRefreshing ? 'animate-spin' : ''}`} />

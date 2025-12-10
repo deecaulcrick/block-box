@@ -22,7 +22,7 @@ const QuoteWidget = () => {
         const params = new URLSearchParams({
             themeNumber: theme.id.toString() || '1',
         });
-        return `https://block-box.vercel.app/quote-widget?${params.toString()}`;
+        return `https://block-box.vercel.app/widgets/quote-widget?${params.toString()}`;
     };
 
     const copyEmbedCode = () => {
