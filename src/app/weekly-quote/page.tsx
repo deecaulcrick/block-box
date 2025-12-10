@@ -77,7 +77,8 @@ const QuoteWidget = () => {
     const currentQuote = quotes[currentQuoteIndex];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-8">
+        <div className="min-h-screen bg-[#dccbff] p-8"
+            style={{ backgroundImage: "url('images/grid-bg.svg')" }}>
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-8">
@@ -200,8 +201,8 @@ const QuoteWidget = () => {
                                             key={t.name}
                                             onClick={() => setTheme(t)}
                                             className={`relative rounded-xl p-4 transition-all ${theme.name === t.name
-                                                    ? 'ring-4 ring-purple-500 ring-offset-2'
-                                                    : 'hover:scale-105'
+                                                ? 'ring-4 ring-purple-500 ring-offset-2'
+                                                : 'hover:scale-105'
                                                 }`}
                                             style={{ backgroundColor: t.background }}
                                         >

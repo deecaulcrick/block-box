@@ -8,7 +8,18 @@ const anton = Anton({
     weight: '400',
     subsets: ['latin'],
 })
-
+const themes = [
+    { name: 'sunburn', background: '#E63946', cardBg: '#FFB3BA', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'olive fade', background: '#A4AC86', cardBg: '#D4D99F', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'butter', background: '#F4D35E', cardBg: '#FFF4B8', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'graphite', background: '#1A1A1A', cardBg: '#4A4A4A', cardBorder: '#2A2A2A', textColor: '#FFFFFF' },
+    { name: 'klein', background: '#002FA7', cardBg: '#E8EDF5', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'lollipop', background: '#FF69B4', cardBg: '#FFB6D9', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'mint', background: '#98D8C8', cardBg: '#C8F2E5', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'lavender', background: '#9D84B7', cardBg: '#D4C5E8', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'peach', background: '#FFCBA4', cardBg: '#FFE5D0', cardBorder: '#000000', textColor: '#000000' },
+    { name: 'ocean', background: '#0077BE', cardBg: '#B3E0FF', cardBorder: '#000000', textColor: '#000000' }
+];
 
 const FlipClockWidget = () => {
     const [time, setTime] = useState(new Date());
@@ -22,18 +33,6 @@ const FlipClockWidget = () => {
         textColor: '#000000'
     });
 
-    const themes = [
-        { name: 'sunburn', background: '#E63946', cardBg: '#FFB3BA', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'olive fade', background: '#A4AC86', cardBg: '#D4D99F', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'butter', background: '#F4D35E', cardBg: '#FFF4B8', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'graphite', background: '#1A1A1A', cardBg: '#4A4A4A', cardBorder: '#2A2A2A', textColor: '#FFFFFF' },
-        { name: 'klein', background: '#002FA7', cardBg: '#E8EDF5', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'lollipop', background: '#FF69B4', cardBg: '#FFB6D9', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'mint', background: '#98D8C8', cardBg: '#C8F2E5', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'lavender', background: '#9D84B7', cardBg: '#D4C5E8', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'peach', background: '#FFCBA4', cardBg: '#FFE5D0', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'ocean', background: '#0077BE', cardBg: '#B3E0FF', cardBorder: '#000000', textColor: '#000000' }
-    ];
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -64,36 +63,7 @@ const FlipClockWidget = () => {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    const FlipCard = ({ value, label }: any) => (
-        <div className="relative font-anton">
-            <div
-                className="rounded-2xl p-8 shadow-lg"
-                style={{
-                    backgroundColor: theme.cardBg,
-                    border: `3px solid ${theme.cardBorder}`
-                }}
-            >
-                <div
-                    className="text-6xl font-bold text-center leading-none"
-                    style={{ color: theme.textColor }}
-                >
-                    {value}
-                </div>
-                {label && (
-                    <div
-                        className="text-xs  text-right mt-1 absolute right-3 bottom-3"
-                        style={{ color: theme.textColor }}
-                    >
-                        {label}
-                    </div>
-                )}
-            </div>
-            <div
-                className="absolute inset-x-0 top-1/2 h-0.5 opacity-30"
-                style={{ backgroundColor: theme.cardBorder }}
-            />
-        </div>
-    );
+
 
     return (
         <div className="min-h-screen bg-[#004900] p-8" >
@@ -132,16 +102,16 @@ const FlipClockWidget = () => {
                                 </div>
 
                                 <div className="flex items-center justify-center gap-4">
-                                    <FlipCard value={hours[0]} />
-                                    <FlipCard value={hours[1]} />
+                                    <FlipCard value={hours[0]} theme={theme} />
+                                    <FlipCard value={hours[1]} theme={theme} />
                                     <div
                                         className="text-6xl font-bold mx-2"
                                         style={{ color: theme.textColor }}
                                     >
                                         :
                                     </div>
-                                    <FlipCard value={minutes[0]} />
-                                    <FlipCard value={minutes[1]} label={period} />
+                                    <FlipCard value={minutes[0]} theme={theme} />
+                                    <FlipCard value={minutes[1]} label={period} theme={theme} />
                                 </div>
                             </div>
 
@@ -313,5 +283,35 @@ const FlipClockWidget = () => {
         </div>
     );
 };
+const FlipCard = ({ value, label, theme }: any) => (
+    <div className="relative font-anton">
+        <div
+            className="rounded-2xl p-8 shadow-lg"
+            style={{
+                backgroundColor: theme.cardBg,
+                border: `3px solid ${theme.cardBorder}`
+            }}
+        >
+            <div
+                className="text-6xl font-bold text-center leading-none"
+                style={{ color: theme.textColor }}
+            >
+                {value}
+            </div>
+            {label && (
+                <div
+                    className="text-xs  text-right mt-1 absolute right-3 bottom-3"
+                    style={{ color: theme.textColor }}
+                >
+                    {label}
+                </div>
+            )}
+        </div>
+        <div
+            className="absolute inset-x-0 top-1/2 h-0.5 opacity-30"
+            style={{ backgroundColor: theme.cardBorder }}
+        />
+    </div>
+);
 
 export default FlipClockWidget;
