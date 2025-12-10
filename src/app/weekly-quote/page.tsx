@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react';
 import { RefreshCw, Copy, Check, Quote } from 'lucide-react';
+import quotes from '@/data/weeklyQuotes';
+import themes from '@/themes/pastel';
 
 const QuoteWidget = () => {
     const [copied, setCopied] = useState(false);
@@ -8,6 +10,7 @@ const QuoteWidget = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
 
     const [theme, setTheme] = useState({
+        id: 5,
         name: 'lollipop',
         background: '#FF69B4',
         cardBg: '#FFB6D9',
@@ -15,45 +18,11 @@ const QuoteWidget = () => {
         textColor: '#000000'
     });
 
-    const themes = [
-        { name: 'sunburn', background: '#E63946', cardBg: '#FFB3BA', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'olive fade', background: '#A4AC86', cardBg: '#D4D99F', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'butter', background: '#F4D35E', cardBg: '#FFF4B8', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'graphite', background: '#1A1A1A', cardBg: '#4A4A4A', cardBorder: '#2A2A2A', textColor: '#FFFFFF' },
-        { name: 'klein', background: '#002FA7', cardBg: '#E8EDF5', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'lollipop', background: '#FF69B4', cardBg: '#FFB6D9', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'mint', background: '#98D8C8', cardBg: '#C8F2E5', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'lavender', background: '#9D84B7', cardBg: '#D4C5E8', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'peach', background: '#FFCBA4', cardBg: '#FFE5D0', cardBorder: '#000000', textColor: '#000000' },
-        { name: 'ocean', background: '#0077BE', cardBg: '#B3E0FF', cardBorder: '#000000', textColor: '#000000' }
-    ];
-
-    const quotes = [
-        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-        { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
-        { text: "Life is what happens when you're busy making other plans.", author: "John Lennon" },
-        { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-        { text: "It is during our darkest moments that we must focus to see the light.", author: "Aristotle" },
-        { text: "Whoever is happy will make others happy too.", author: "Anne Frank" },
-        { text: "Do not go where the path may lead, go instead where there is no path and leave a trail.", author: "Ralph Waldo Emerson" },
-        { text: "You will face many defeats in life, but never let yourself be defeated.", author: "Maya Angelou" },
-        { text: "In the end, it's not the years in your life that count. It's the life in your years.", author: "Abraham Lincoln" },
-        { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
-        { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
-        { text: "The future depends on what you do today.", author: "Mahatma Gandhi" },
-        { text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair" },
-        { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
-        { text: "The only impossible journey is the one you never begin.", author: "Tony Robbins" }
-    ];
-
     const generateEmbedCode = () => {
         const params = new URLSearchParams({
-            bg: theme.background.replace('#', ''),
-            card: theme.cardBg.replace('#', ''),
-            border: theme.cardBorder.replace('#', ''),
-            text: theme.textColor.replace('#', '')
+            themeNumber: theme.id.toString() || '1',
         });
-        return `https://your-widget-domain.vercel.app/quote-widget?${params.toString()}`;
+        return `https://block-box.vercel.app/quote-widget?${params.toString()}`;
     };
 
     const copyEmbedCode = () => {
@@ -124,19 +93,14 @@ const QuoteWidget = () => {
                                         justifyContent: 'center'
                                     }}
                                 >
-                                    <Quote className="w-8 h-8 mb-4 opacity-50" style={{ color: theme.textColor }} />
+
                                     <p
-                                        className="text-2xl font-medium leading-relaxed mb-6 italic"
-                                        style={{ color: theme.textColor }}
+                                        className="text-4xl font-dm-serif tracking-tighter text-center mb-6"
+                                        style={{ color: theme.background }}
                                     >
-                                        "{currentQuote.text}"
+                                        {currentQuote.text}
                                     </p>
-                                    <p
-                                        className="text-lg font-semibold text-right"
-                                        style={{ color: theme.textColor, opacity: 0.9 }}
-                                    >
-                                        — {currentQuote.author}
-                                    </p>
+
                                 </div>
 
                                 {/* Refresh Button */}

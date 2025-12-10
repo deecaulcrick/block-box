@@ -6,6 +6,8 @@
   --font-anton: 'Anton', sans-serif;
 --font-instrument-serif: 'Instrument Serif', serif;
 --font-shadows-into-light: 'Shadows Into Light', serif;
+--font-montserrat: 'Montserrat', sans-serif;
+--font-dm-serif-text: 'DM Serif Text', serif;
 }
 
 @theme inline {
@@ -16,6 +18,8 @@
   --font-anton: var(--font-anton);
   --font-heading: var(--font-instrument-serif);
   --font-handwritten: var(--font-shadows-into-light);
+  --font-montserrat: var(--font-montserrat);
+  --font-dm-serif: var(--font-dm-serif-text);
   --grid-pattern: url('/images/grid-bg.svg');
 }
 

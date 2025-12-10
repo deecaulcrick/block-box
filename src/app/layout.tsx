@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif, Shadows_Into_Light } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Shadows_Into_Light, DM_Serif_Text } from "next/font/google";
 import "./globals.css";
+
+const dmSerif = DM_Serif_Text({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-dm-serif-text",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${shadows_into_light.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${shadows_into_light.variable} ${dmSerif.variable} antialiased`}
       >
         {children}
       </body>
