@@ -5,6 +5,13 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  // Allow explicit `any` in TypeScript files
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@react/no-escaped-entities': 'off',
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
